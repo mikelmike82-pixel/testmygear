@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   },
   description:
     "Free, instant browser tools to test your keyboard, mouse click speed, monitor for dead pixels, webcam, microphone, and gamepad — no downloads required.",
+  verification: {
+    google: "JxHtE4X15YJvw_RMGIfzB1J5YU6fw6iIW--gw8Ft_g0",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
