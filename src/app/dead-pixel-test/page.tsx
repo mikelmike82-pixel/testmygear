@@ -1,17 +1,44 @@
-import type { Metadata } from "next";
 import ToolShell from "@/components/ToolShell";
 import DeadPixelTestWidget from "@/components/tools/DeadPixelTestWidget";
-import FAQ from "@/components/FAQ";
+import FAQ, { QA } from "@/components/FAQ";
+import JsonLd from "@/components/JsonLd";
+import { buildMetadata, toolSchema, faqSchema } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Dead Pixel Test — Check Your Screen for Dead or Stuck Pixels",
-  description:
-    "Free full-screen dead pixel test. Cycle through solid colors to spot dead or stuck pixels on any monitor, laptop, or phone screen.",
-};
+const TITLE = "Dead Pixel Test — Check Your Screen for Dead or Stuck Pixels";
+const DESCRIPTION =
+  "Free full-screen dead pixel test. Cycle through solid colors to spot dead or stuck pixels on any monitor, laptop, or phone screen.";
+
+export const metadata = buildMetadata({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: "/dead-pixel-test",
+});
+
+const faqItems: QA[] = [
+  {
+    q: "Why does the test go full-screen?",
+    a: "A dead or stuck pixel is often just one dot among millions — full-screen solid colors remove every other visual distraction so a single mismatched pixel actually stands out.",
+  },
+  {
+    q: "Can this test damage my screen?",
+    a: "No. It only displays solid colors, the same as any other image or video your screen already shows.",
+  },
+  {
+    q: "Does this work on phones and tablets?",
+    a: "Yes — open this page in your phone or tablet's browser and run the test the same way. Full-screen mode may behave slightly differently depending on your browser.",
+  },
+  {
+    q: "I see a colored dot only sometimes — is that still a stuck pixel?",
+    a: "Possibly. If it appears in the same physical spot on screen regardless of what's actually being displayed there, that's consistent with a stuck or dead pixel rather than something in the image itself.",
+  },
+];
 
 export default function DeadPixelTestPage() {
   return (
-    <ToolShell
+    <>
+      <JsonLd data={toolSchema({ name: TITLE, description: DESCRIPTION, path: "/dead-pixel-test" })} />
+      <JsonLd data={faqSchema(faqItems)} />
+      <ToolShell
       slug="dead-pixel-test"
       title="Dead Pixel Test"
       tagline="Cycle through solid colors full-screen to spot pixels that don't match everything around them."
@@ -60,26 +87,8 @@ export default function DeadPixelTestPage() {
         </p>
       </section>
 
-      <FAQ
-        items={[
-          {
-            q: "Why does the test go full-screen?",
-            a: "A dead or stuck pixel is often just one dot among millions — full-screen solid colors remove every other visual distraction so a single mismatched pixel actually stands out.",
-          },
-          {
-            q: "Can this test damage my screen?",
-            a: "No. It only displays solid colors, the same as any other image or video your screen already shows.",
-          },
-          {
-            q: "Does this work on phones and tablets?",
-            a: "Yes — open this page in your phone or tablet's browser and run the test the same way. Full-screen mode may behave slightly differently depending on your browser.",
-          },
-          {
-            q: "I see a colored dot only sometimes — is that still a stuck pixel?",
-            a: "Possibly. If it appears in the same physical spot on screen regardless of what's actually being displayed there, that's consistent with a stuck or dead pixel rather than something in the image itself.",
-          },
-        ]}
-      />
-    </ToolShell>
+      <FAQ items={faqItems} />
+      </ToolShell>
+    </>
   );
 }

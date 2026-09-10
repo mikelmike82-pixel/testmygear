@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "About",
   description: "Why this site exists and how the tools work.",
-};
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (

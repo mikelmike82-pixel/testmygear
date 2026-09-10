@@ -1,17 +1,40 @@
-import type { Metadata } from "next";
 import ToolShell from "@/components/ToolShell";
 import MicrophoneTestWidget from "@/components/tools/MicrophoneTestWidget";
-import FAQ from "@/components/FAQ";
+import FAQ, { QA } from "@/components/FAQ";
+import JsonLd from "@/components/JsonLd";
+import { buildMetadata, toolSchema, faqSchema } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Microphone Test — Check Your Mic Online",
-  description:
-    "Test your microphone right in your browser with a live volume meter. Confirm you'll be heard clearly before a call or recording — free, no download.",
-};
+const TITLE = "Microphone Test — Check Your Mic Online";
+const DESCRIPTION =
+  "Test your microphone right in your browser with a live volume meter. Confirm you'll be heard clearly before a call or recording — free, no download.";
+
+export const metadata = buildMetadata({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: "/microphone-test",
+});
+
+const faqItems: QA[] = [
+  {
+    q: "Is my voice recorded or sent anywhere?",
+    a: "No. Audio is analyzed only to draw the level meter in your browser — nothing is recorded, saved, or transmitted anywhere.",
+  },
+  {
+    q: "Why is there a delay between speaking and the bar moving?",
+    a: "There shouldn't be a noticeable one under normal conditions. A significant delay usually points to a slow device or too many other tabs and applications competing for resources.",
+  },
+  {
+    q: "Can this test tell me if I sound clear, not just loud?",
+    a: "Not directly — a level meter measures volume, not audio quality. For clarity issues like background noise or a muffled sound, try a quick voice recording and listen back to it, or ask someone on a call to confirm.",
+  },
+];
 
 export default function MicrophoneTestPage() {
   return (
-    <ToolShell
+    <>
+      <JsonLd data={toolSchema({ name: TITLE, description: DESCRIPTION, path: "/microphone-test" })} />
+      <JsonLd data={faqSchema(faqItems)} />
+      <ToolShell
       slug="microphone-test"
       title="Microphone Test"
       tagline="Speak normally and watch the level meter to confirm your mic is picking up your voice."
@@ -43,22 +66,8 @@ export default function MicrophoneTestPage() {
         </p>
       </section>
 
-      <FAQ
-        items={[
-          {
-            q: "Is my voice recorded or sent anywhere?",
-            a: "No. Audio is analyzed only to draw the level meter in your browser — nothing is recorded, saved, or transmitted anywhere.",
-          },
-          {
-            q: "Why is there a delay between speaking and the bar moving?",
-            a: "There shouldn't be a noticeable one under normal conditions. A significant delay usually points to a slow device or too many other tabs and applications competing for resources.",
-          },
-          {
-            q: "Can this test tell me if I sound clear, not just loud?",
-            a: "Not directly — a level meter measures volume, not audio quality. For clarity issues like background noise or a muffled sound, try a quick voice recording and listen back to it, or ask someone on a call to confirm.",
-          },
-        ]}
-      />
-    </ToolShell>
+      <FAQ items={faqItems} />
+      </ToolShell>
+    </>
   );
 }

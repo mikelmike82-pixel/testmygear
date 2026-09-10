@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Contact",
   description: "Who built TestMyGear and how the site works.",
-};
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (

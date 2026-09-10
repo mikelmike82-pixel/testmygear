@@ -1,8 +1,11 @@
-import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Privacy Policy",
-};
+  description:
+    "How TestMyGear handles data: no accounts, no server, no advertising currently running.",
+  path: "/privacy",
+});
 
 export default function PrivacyPage() {
   return (

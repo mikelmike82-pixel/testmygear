@@ -1,17 +1,44 @@
-import type { Metadata } from "next";
 import ToolShell from "@/components/ToolShell";
 import KeyboardTesterWidget from "@/components/tools/KeyboardTesterWidget";
-import FAQ from "@/components/FAQ";
+import FAQ, { QA } from "@/components/FAQ";
+import JsonLd from "@/components/JsonLd";
+import { buildMetadata, toolSchema, faqSchema } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Keyboard Tester — Check Every Key Online",
-  description:
-    "Test your keyboard online. Press any key to see it highlight on a virtual keyboard, plus its key code — free, no download required.",
-};
+const TITLE = "Keyboard Tester — Check Every Key Online";
+const DESCRIPTION =
+  "Test your keyboard online. Press any key to see it highlight on a virtual keyboard, plus its key code — free, no download required.";
+
+export const metadata = buildMetadata({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: "/keyboard-tester",
+});
+
+const faqItems: QA[] = [
+  {
+    q: "Why does a key not light up even though I pressed it?",
+    a: "Click anywhere on this page first so your browser tab has focus — a keyboard test can't detect key presses if a different tab or window is focused. If it still doesn't register, that key may not be sending a signal to your computer at all.",
+  },
+  {
+    q: "Does this work with laptop keyboards?",
+    a: "Yes — this reads standard keyboard input, so it works the same way for a laptop's built-in keyboard as it does for an external one.",
+  },
+  {
+    q: "Some keys aren't on the diagram — can I still test them?",
+    a: "This layout covers the standard main keyboard area. Keys outside it, like a numpad or dedicated media keys, will still show up in the \"last key pressed\" readout above the diagram even though they're not drawn on it.",
+  },
+  {
+    q: "Is my keyboard input recorded anywhere?",
+    a: "No. Key presses are only used to update what's on this page in your browser — nothing is logged, stored, or sent anywhere.",
+  },
+];
 
 export default function KeyboardTesterPage() {
   return (
-    <ToolShell
+    <>
+      <JsonLd data={toolSchema({ name: TITLE, description: DESCRIPTION, path: "/keyboard-tester" })} />
+      <JsonLd data={faqSchema(faqItems)} />
+      <ToolShell
       slug="keyboard-tester"
       title="Keyboard Tester"
       tagline="Press any key on your keyboard — it'll light up below if it's registering correctly."
@@ -56,26 +83,8 @@ export default function KeyboardTesterPage() {
         </p>
       </section>
 
-      <FAQ
-        items={[
-          {
-            q: "Why does a key not light up even though I pressed it?",
-            a: "Click anywhere on this page first so your browser tab has focus — a keyboard test can't detect key presses if a different tab or window is focused. If it still doesn't register, that key may not be sending a signal to your computer at all.",
-          },
-          {
-            q: "Does this work with laptop keyboards?",
-            a: "Yes — this reads standard keyboard input, so it works the same way for a laptop's built-in keyboard as it does for an external one.",
-          },
-          {
-            q: "Some keys aren't on the diagram — can I still test them?",
-            a: "This layout covers the standard main keyboard area. Keys outside it, like a numpad or dedicated media keys, will still show up in the \"last key pressed\" readout above the diagram even though they're not drawn on it.",
-          },
-          {
-            q: "Is my keyboard input recorded anywhere?",
-            a: "No. Key presses are only used to update what's on this page in your browser — nothing is logged, stored, or sent anywhere.",
-          },
-        ]}
-      />
-    </ToolShell>
+      <FAQ items={faqItems} />
+      </ToolShell>
+    </>
   );
 }

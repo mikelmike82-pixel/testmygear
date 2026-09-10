@@ -1,17 +1,40 @@
-import type { Metadata } from "next";
 import ToolShell from "@/components/ToolShell";
 import GamepadTesterWidget from "@/components/tools/GamepadTesterWidget";
-import FAQ from "@/components/FAQ";
+import FAQ, { QA } from "@/components/FAQ";
+import JsonLd from "@/components/JsonLd";
+import { buildMetadata, toolSchema, faqSchema } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Gamepad Tester — Test Buttons & Check Stick Drift Online",
-  description:
-    "Test every button on your Xbox, PlayStation, or PC controller and check your analog sticks for drift — free, right in your browser, no download.",
-};
+const TITLE = "Gamepad Tester — Test Buttons & Check Stick Drift Online";
+const DESCRIPTION =
+  "Test every button on your Xbox, PlayStation, or PC controller and check your analog sticks for drift — free, right in your browser, no download.";
+
+export const metadata = buildMetadata({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: "/gamepad-tester",
+});
+
+const faqItems: QA[] = [
+  {
+    q: "Does this work with PlayStation and Xbox controllers?",
+    a: "Yes, along with most PC and generic USB or Bluetooth controllers. Button labels above follow the standard Xbox-style layout, so on a PlayStation controller, A/B/X/Y correspond to Cross/Circle/Square/Triangle in the same positions.",
+  },
+  {
+    q: "Only some buttons are labeled correctly — why?",
+    a: "Controllers that don't follow the standard browser gamepad mapping may report buttons in a different order. The live pressed/released state is still accurate even if a specific label doesn't match your controller.",
+  },
+  {
+    q: "Can I test two controllers at once?",
+    a: "This page currently shows one connected controller at a time — the first one that sends an input. Disconnect or stay idle on the first controller and use the second one to test it separately.",
+  },
+];
 
 export default function GamepadTesterPage() {
   return (
-    <ToolShell
+    <>
+      <JsonLd data={toolSchema({ name: TITLE, description: DESCRIPTION, path: "/gamepad-tester" })} />
+      <JsonLd data={faqSchema(faqItems)} />
+      <ToolShell
       slug="gamepad-tester"
       title="Gamepad Tester"
       tagline="Connect a controller, press every button, and check both sticks for drift."
@@ -57,22 +80,8 @@ export default function GamepadTesterPage() {
         </p>
       </section>
 
-      <FAQ
-        items={[
-          {
-            q: "Does this work with PlayStation and Xbox controllers?",
-            a: "Yes, along with most PC and generic USB or Bluetooth controllers. Button labels above follow the standard Xbox-style layout, so on a PlayStation controller, A/B/X/Y correspond to Cross/Circle/Square/Triangle in the same positions.",
-          },
-          {
-            q: "Only some buttons are labeled correctly — why?",
-            a: "Controllers that don't follow the standard browser gamepad mapping may report buttons in a different order. The live pressed/released state is still accurate even if a specific label doesn't match your controller.",
-          },
-          {
-            q: "Can I test two controllers at once?",
-            a: "This page currently shows one connected controller at a time — the first one that sends an input. Disconnect or stay idle on the first controller and use the second one to test it separately.",
-          },
-        ]}
-      />
-    </ToolShell>
+      <FAQ items={faqItems} />
+      </ToolShell>
+    </>
   );
 }
