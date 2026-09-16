@@ -23,7 +23,10 @@ export default function WebcamTestWidget() {
         video: deviceId ? { deviceId: { exact: deviceId } } : true,
       });
       streamRef.current = stream;
-      if (videoRef.current) videoRef.current.srcObject = stream;
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+        videoRef.current.play().catch(() => {});
+      }
 
       const track = stream.getVideoTracks()[0];
       const settings = track.getSettings();
@@ -58,6 +61,18 @@ export default function WebcamTestWidget() {
       streamRef.current?.getTracks().forEach((t) => t.stop());
     };
   }, []);
+
+  // The <video> element only exists in the DOM once status === "active".
+  // The srcObject assignment inside startStream() can fire before that
+  // element has mounted (it runs just before setStatus("active") takes
+  // effect), so re-attach the stream here once the element is guaranteed
+  // to exist — this is what actually fixes the black-screen case.
+  useEffect(() => {
+    if (status === "active" && videoRef.current && streamRef.current) {
+      videoRef.current.srcObject = streamRef.current;
+      videoRef.current.play().catch(() => {});
+    }
+  }, [status]);
 
   return (
     <div>
