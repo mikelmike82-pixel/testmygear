@@ -10,7 +10,7 @@ import GearIllustration from "@/components/illustrations/GearIllustration";
 function HighlightedTitle({ text }: { text: string }) {
   const parts = text.split(/~/);
   return (
-    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
+    <h1 className="font-serif-display text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight">
       {parts.map((part, index) =>
         index === 1 ? (
           <span key={index} className="relative whitespace-nowrap">

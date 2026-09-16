@@ -15,16 +15,16 @@ export default function GearIllustration({ className }: { className?: string }) 
     >
       <defs>
         <linearGradient id="gear-grad" x1="0" y1="0" x2="480" y2="400" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stopColor="#6d5ef1" />
-          <stop offset="1" stopColor="#22d3ee" />
+          <stop offset="0" stopColor="#433a8f" />
+          <stop offset="1" stopColor="#a8651c" />
         </linearGradient>
         <radialGradient id="glow-a" cx="0.5" cy="0.5" r="0.5">
-          <stop offset="0" stopColor="#6d5ef1" stopOpacity="0.35" />
-          <stop offset="1" stopColor="#6d5ef1" stopOpacity="0" />
+          <stop offset="0" stopColor="#433a8f" stopOpacity="0.16" />
+          <stop offset="1" stopColor="#433a8f" stopOpacity="0" />
         </radialGradient>
         <radialGradient id="glow-b" cx="0.5" cy="0.5" r="0.5">
-          <stop offset="0" stopColor="#22d3ee" stopOpacity="0.3" />
-          <stop offset="1" stopColor="#22d3ee" stopOpacity="0" />
+          <stop offset="0" stopColor="#a8651c" stopOpacity="0.14" />
+          <stop offset="1" stopColor="#a8651c" stopOpacity="0" />
         </radialGradient>
       </defs>
 
@@ -33,9 +33,9 @@ export default function GearIllustration({ className }: { className?: string }) 
       <circle cx="370" cy="300" r="130" fill="url(#glow-b)" />
 
       {/* floating accent dots */}
-      <circle cx="60" cy="230" r="6" fill="#22d3ee" opacity="0.8" />
-      <circle cx="430" cy="120" r="5" fill="#6d5ef1" opacity="0.8" />
-      <circle cx="410" cy="70" r="3.5" fill="#22d3ee" opacity="0.6" />
+      <circle cx="60" cy="230" r="6" fill="#a8651c" opacity="0.7" />
+      <circle cx="430" cy="120" r="5" fill="#433a8f" opacity="0.7" />
+      <circle cx="410" cy="70" r="3.5" fill="#a8651c" opacity="0.55" />
 
       {/* monitor stand */}
       <rect x="226" y="216" width="28" height="34" rx="4" fill="#262d3d" />

@@ -8,7 +8,7 @@ type LogoProps = {
 
 /**
  * TestMyGear logo: a rounded badge with a checkmark (verified / working
- * gear), in the site's purple-to-cyan brand gradient, optionally paired
+ * gear), in the site's indigo-to-amber brand gradient, optionally paired
  * with the text wordmark. Used in the header, footer, and as the base for
  * the favicon/app icon (see src/app/icon.svg, which mirrors this mark).
  */
@@ -25,8 +25,8 @@ export default function Logo({ size = 28, showText = true, className }: LogoProp
       >
         <defs>
           <linearGradient id="tmg-logo-gradient" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stopColor="#6d5ef1" />
-            <stop offset="1" stopColor="#22d3ee" />
+            <stop offset="0" stopColor="#433a8f" />
+            <stop offset="1" stopColor="#a8651c" />
           </linearGradient>
         </defs>
         <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#tmg-logo-gradient)" />
@@ -40,7 +40,7 @@ export default function Logo({ size = 28, showText = true, className }: LogoProp
         />
       </svg>
       {showText && (
-        <span className="font-semibold text-lg tracking-tight whitespace-nowrap">
+        <span className="font-serif-display font-semibold text-lg tracking-tight whitespace-nowrap">
           TestMyGear
         </span>
       )}

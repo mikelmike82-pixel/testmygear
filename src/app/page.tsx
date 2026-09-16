@@ -10,7 +10,7 @@ export default function HomePage() {
       <ToolsGrid tools={tools} />
 
       <section className="mt-16 max-w-3xl mx-auto">
-        <h2 className="text-xl font-semibold mb-3">
+        <h2 className="font-serif-display text-xl font-normal mb-3">
           Why test your own hardware?
         </h2>
         <div className="space-y-3 text-[var(--color-ink-soft)] leading-relaxed text-sm">

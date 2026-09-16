@@ -9,7 +9,7 @@ export const metadata = buildMetadata({
 export default function ContactPage() {
   return (
     <div className="mx-auto max-w-2xl px-4 py-10">
-      <h1 className="text-3xl font-bold mb-4">Contact</h1>
+      <h1 className="font-serif-display text-3xl font-normal mb-4">Contact</h1>
       <div className="space-y-4 text-[var(--color-ink-soft)] leading-relaxed">
         <p>
           TestMyGear is developed by{" "}

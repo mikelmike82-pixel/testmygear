@@ -9,7 +9,7 @@ export const metadata = buildMetadata({
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-2xl px-4 py-10">
-      <h1 className="text-3xl font-bold mb-4">About TestMyGear</h1>
+      <h1 className="font-serif-display text-3xl font-normal mb-4">About TestMyGear</h1>
       <div className="space-y-4 text-[var(--color-ink-soft)] leading-relaxed">
         <p>
           Most hardware problems get discovered at the worst possible

@@ -25,8 +25,8 @@ export default function ToolIcon({ slug, size = 40, className }: ToolIconProps) 
     >
       <defs>
         <linearGradient id={gradientId} x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stopColor="#6d5ef1" />
-          <stop offset="1" stopColor="#22d3ee" />
+          <stop offset="0" stopColor="#433a8f" />
+          <stop offset="1" stopColor="#a8651c" />
         </linearGradient>
       </defs>
       <rect x="4" y="4" width="56" height="56" rx="14" fill={`url(#${gradientId})`} />
